@@ -22,6 +22,13 @@
             if (element.nodeType === 1) {
                 dataSet(element, ITEMKEY, data);
                 dataSet(element, PARENTKEY, dataGet(element.parentNode, LISTKEY));
+            } else if (element.nodeType === 8) {
+                var sibl = $(element).siblings();
+                if (sibl.length) {
+                    element = sibl[0];
+                    dataSet(element, ITEMKEY, data);
+                    dataSet(element, PARENTKEY, dataGet(element.parentNode, LISTKEY));
+                }
             }
         });
     };
